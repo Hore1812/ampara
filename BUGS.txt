@@ -1,0 +1,20 @@
+
+REGISTRAR LIQUIDACION : Soporte, No soporte , Horas Internas
+Tabla PLANIFICACION
+permite registrar pero sale mensaje de que la tabla no existe. (RESOLVER)-RESUELTO
+
+Página PLANIFICACIONES
+
+lA LISTA DE CLIENTES  deben figurar los de soporte y no soprte
+
+BOTON DESACTIVAR PLANIFICACION NO FUNCIONA (Planificaciones.php)
+
+ACTUALIZAR EN LA TABLA DISTRIBUCION LIQUIDACIONES Y PPLANIFICACION EL ID DE LOS SOCIOS
+
+
+-------------------------------------------------------------------------------
+
+Eliminar liquidación---> Desactiva en la BD pero el ID del editor guarda como 0.
+
+
+
