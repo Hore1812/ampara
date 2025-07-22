@@ -119,6 +119,7 @@ if (isset($_SESSION['idusuario'])) {
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownReportes">
                             <li><a class="dropdown-item" href="reporte_general_planificaciones.php">General de Planificación</a></li>
                             <li><a class="dropdown-item" href="reporte_progreso_colaboradores.php">General  Colaboradores</a></li>
+                            <li><a class="dropdown-item" href="reporte_planificacion_liquidacion.php">Planificación vs. Liquidación</a></li>
                             <li><a class="dropdown-item" href="reporte_participacion_planificacion.php">Participación por Plan</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="#">Otros General</a></li>
