@@ -1,0 +1,25 @@
+C# y SQL Server para desarrollar una aplicación (mini ERP) con Windows Forms
+https://www.youtube.com/watch?v=CoLeugn3C_0
+
+SQL Server en Azure Desde Cero + SQL Server Management Studio
+https://www.youtube.com/watch?v=8ntuLTA4dQ8
+
+Instalar Git y unirse a GitHub
+https://www.youtube.com/watch?v=wxYwk-kYHWQ
+
+Generar Instalador MSI y EXE para un Programa C# en Visual Studio
+https://www.youtube.com/watch?v=B7Qug8yfUJM&list=PLQhozeSeG-E7AYyM4O-qiJ98wAmjwoSvA&index=21
+
+##############################
+
+22 - Python desde Cero - Crear Sitio Web
+https://www.youtube.com/watch?v=KdIntBf0eVk&list=PLQhozeSeG-E7AYyM4O-qiJ98wAmjwoSvA&index=22
+23 - Programa en R desde cero, ejemplo de predicción
+https://www.youtube.com/watch?v=yumgfdI1if4&list=PLQhozeSeG-E7AYyM4O-qiJ98wAmjwoSvA&index=23
+
+24 - C# y SQLite para Aplicación Web
+https://www.youtube.com/watch?v=9jV3wiMSz64&list=PLQhozeSeG-E7AYyM4O-qiJ98wAmjwoSvA&index=24
+
+reservas-w54b.onrender.com/Reservas/Create
+
+
