@@ -1,0 +1,17 @@
+{
+    "name": "ampara/ampara-intranet",
+    "description": "Intranet system for Ampara.",
+    "type": "project",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Jules",
+            "email": "jules@example.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Ampara\\": "src/"
+        }
+    }
+}
