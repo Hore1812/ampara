@@ -1,0 +1,165 @@
+:root {
+    --color-primary: #012060;
+    --color-secondary: #f28120;
+    --color-light: #ededed;
+    --color-white: #ffffff;
+}
+
+body {
+    background-color: var(--color-light);
+}
+
+.bg-primary {
+    background-color: var(--color-primary) !important;
+}
+
+.bg-orange {
+    background-color: var(--color-secondary) !important;
+}
+
+.text-primary {
+    color: var(--color-primary) !important;
+}
+
+.text-orange {
+    color: var(--color-secondary) !important;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.btn-primary:hover {
+    background-color: #01184d;
+    border-color: #01184d;
+}
+
+.btn-orange {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+    color: white;
+}
+
+.btn-orange:hover {
+    background-color: #e0761a;
+    border-color: #e0761a;
+    color: white;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.border-left-primary {
+    border-left: 0.25rem solid var(--color-primary) !important;
+}
+
+.border-left-success {
+    border-left: 0.25rem solid #1cc88a !important;
+}
+
+.border-left-warning {
+    border-left: 0.25rem solid #f6c23e !important;
+}
+
+.border-left-info {
+    border-left: 0.25rem solid #36b9cc !important;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.card-text {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.table th {
+    background-color: var(--color-primary);
+    color: white;
+    text-align: center;
+    vertical-align: middle; /* Alinear verticalmente para consistencia */
+}
+
+#seccionDistribucion {
+    background-color: rgba(1, 32, 96, 0.05);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(1, 32, 96, 0.1);
+}
+
+.colaborador-row {
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #dee2e6;
+}
+
+@media (max-width: 768px) {
+    .card-text {
+        font-size: 1.4rem;
+    }
+    
+    .colaborador-row > div {
+        margin-bottom: 10px;
+    }
+}
+/* Centrado para el contenido de las tarjetas de estadísticas */
+.estadisticas-card-body {
+    text-align: center;
+}
+
+/* Efecto hover para las tarjetas en la fila de estadísticas */
+.row.mb-4 > .col-md-2 > .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 .5rem 2rem rgba(0,0,0,.20)!important;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+/*------------------------------------------------------------------------------------------*/
+/* Ajustes de ancho para #tablaLiquidaciones */
+#tablaLiquidaciones th:nth-child(1), #tablaLiquidaciones td:nth-child(1) { width: 1%; } /* ID */
+#tablaLiquidaciones th:nth-child(2), #tablaLiquidaciones td:nth-child(2) { width: 5%; } /* FECHA */
+#tablaLiquidaciones th:nth-child(3), #tablaLiquidaciones td:nth-child(3) { width: 7%; } /* CLIENTE */
+#tablaLiquidaciones th:nth-child(4), #tablaLiquidaciones td:nth-child(4) { width: 7%; } /* TEMA */
+#tablaLiquidaciones th:nth-child(5), #tablaLiquidaciones td:nth-child(5) { width: 5%; } /* ASUNTO */
+#tablaLiquidaciones th:nth-child(7), #tablaLiquidaciones td:nth-child(7) { width: 5%; } /* LIDER */
+#tablaLiquidaciones th:nth-child(8), #tablaLiquidaciones td:nth-child(8) { width: 2%; } /* ENCARGADO */
+#tablaLiquidaciones th:nth-child(9), #tablaLiquidaciones td:nth-child(9) { width: 2%; } /* ESTADO */
+#tablaLiquidaciones th:nth-child(10), #tablaLiquidaciones td:nth-child(10) { width: 1%; } /* HORAS */
+#tablaLiquidaciones th:nth-child(11), #tablaLiquidaciones td:nth-child(11) { width: 3%; } /* TIPO HORA */
+#tablaLiquidaciones th:nth-child(12), #tablaLiquidaciones td:nth-child(12) { width: 5%; } /* ACCIONES */
+
+/* Columna MOTIVO en #tablaLiquidaciones */
+#tablaLiquidaciones th:nth-child(6),
+#tablaLiquidaciones td:nth-child(6) {
+    white-space: normal; /* Permitir que el texto se ajuste */
+    word-wrap: break-word; /* Romper palabras largas si es necesario */
+    vertical-align: middle; /* Alinear verticalmente */
+}
+
+/* Ajustes de ancho para #tablaHistoricoColaborador */
+#tablaHistoricoColaborador th:nth-child(1), #tablaHistoricoColaborador td:nth-child(1) { width: 1%; } /* ID */
+#tablaHistoricoColaborador th:nth-child(2), #tablaHistoricoColaborador td:nth-child(2) { width: 5%; } /* FECHA */
+#tablaHistoricoColaborador th:nth-child(3), #tablaHistoricoColaborador td:nth-child(3) { width: 7%; } /* CLIENTE */
+#tablaHistoricoColaborador th:nth-child(4), #tablaHistoricoColaborador td:nth-child(4) { width: 7%; } /* TEMA */
+#tablaHistoricoColaborador th:nth-child(5), #tablaHistoricoColaborador td:nth-child(5) { width: 5%; } /* ASUNTO */
+#tablaHistoricoColaborador th:nth-child(7), #tablaHistoricoColaborador td:nth-child(7) { width: 5%; } /* LIDER */
+#tablaHistoricoColaborador th:nth-child(8), #tablaHistoricoColaborador td:nth-child(8) { width: 2%; } /* ENCARGADO */
+#tablaHistoricoColaborador th:nth-child(9), #tablaHistoricoColaborador td:nth-child(9) { width: 2%; } /* ESTADO */
+#tablaHistoricoColaborador th:nth-child(10), #tablaHistoricoColaborador td:nth-child(10) { width: 2%; } /* ACUMULADO */
+#tablaHistoricoColaborador th:nth-child(11), #tablaHistoricoColaborador td:nth-child(11) { width: 3%; } /* TIPO HORA */
+
+/* Columna MOTIVO en #tablaHistoricoColaborador */
+#tablaHistoricoColaborador th:nth-child(6),
+#tablaHistoricoColaborador td:nth-child(6) {
+    white-space: normal; /* Permitir que el texto se ajuste */
+    word-wrap: break-word;
+    vertical-align: middle;
+}
+/*------------------------------------------------------------------------------*/

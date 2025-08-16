@@ -1,0 +1,39 @@
+--- New Request ---
+POST data: Array
+(
+    [anio] => 2025
+    [mes] => 7
+    [idcliente] => 11
+)
+
+Parameters: anio=2025, mes=7, idCliente=11
+Query 1: SELECT NombreCliente as contrato_cliente, EstadoLiquidacion as estado_liquidacion, SUM(HorasLiquidadasPorEstado) as total_horas FROM vista_reporte_planificacion_vs_liquidacion WHERE AnioPlan = :anio AND MesPlanNumerico = :mes AND idContratoCliente IN (SELECT idcontratocli FROM contratocliente WHERE idcliente = :id_cliente) GROUP BY NombreCliente, EstadoLiquidacion
+Params 1: Array
+(
+    [anio] => 2025
+    [mes] => 7
+    [id_cliente] => 11
+)
+
+Result 1: Array
+(
+)
+
+Query 2: SELECT v.NombreParticipante as colaborador, SUM(v.HorasCompletadasPorParticipante) as horas_asignadas, SUM(v.PorcentajeDelParticipanteEnCompletadas) as porcentaje FROM vista_planificacion_vs_participantes_completado v JOIN contratocliente cc ON v.idContratoCliente = cc.idcontratocli WHERE v.MesPlan = :mes_plan AND cc.idcliente = :id_cliente GROUP BY v.NombreParticipante
+Params 2: Array
+(
+    [mes_plan] => 2025-07
+    [id_cliente] => 11
+)
+
+Result 2: Array
+(
+)
+
+Final response: Array
+(
+    [success] => 
+    [message] => No se encontraron datos.
+    [data] => 
+)
+
