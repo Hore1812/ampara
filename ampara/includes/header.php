@@ -37,7 +37,7 @@ if (isset($_SESSION['idusuario'])) {
 
     if (isset($_SESSION['tipo_usuario'])) {
         $tipo_usuario_actual = $_SESSION['tipo_usuario'];
-       
+
     }
 }
 ?>
@@ -52,21 +52,21 @@ if (isset($_SESSION['idusuario'])) {
     <!-- <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon.png"/>
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon.png"/>
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon.png"/> -->
-   
+
     <title><?php echo isset($page_title) ? htmlspecialchars($page_title) : 'Intranet-AMPARA'; ?></title>
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+
     <!-- DataTables CSS (si se sigue usando globalmente) -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
-    
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/estilo.css">
-   
+
     <!-- <link rel="stylesheet" href="css/empleados.css"> -->
     <style>
         /* Estilos adicionales para el header si son necesarios */
@@ -126,7 +126,7 @@ if (isset($_SESSION['idusuario'])) {
                             <li><a class="dropdown-item" href="#">Por Cliente</a></li>
                         </ul>
                     </li>
-                   
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownNoticias" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Noticias
@@ -165,7 +165,7 @@ if (isset($_SESSION['idusuario'])) {
                             <li><a class="dropdown-item" href="planificaciones.php">Planificacion</a></li>
                         </ul>
                     </li>
-                    
+
                     <?php endif;?>
                 </ul>
 
@@ -192,7 +192,7 @@ if (isset($_SESSION['idusuario'])) {
             </div>
         </div>
     </nav>
-    
+
     <!-- Contenedor principal para empujar el contenido debajo del navbar fijo -->
 
     <!-- Modal Perfil de Usuario -->
@@ -200,7 +200,7 @@ if (isset($_SESSION['idusuario'])) {
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title" id="modalPerfilUsuarioLabel"><i class="fas fa-user-circle me-2"></i>Perfil de Usuario</h5>
+                    <h5 class="modal-title" id="modalPerfilUsuarioLabel"><i class="fas fa-user-edit me-2"></i>Editar Perfil de <span id="nombreUsuarioEnModal">Usuario</span></h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -209,51 +209,102 @@ if (isset($_SESSION['idusuario'])) {
                             <span class="visually-hidden">Cargando...</span>
                         </div>
                     </div>
-                    <div id="contentPerfil" style="display: none;">
+                    <form id="formPerfilUsuario" enctype="multipart/form-data" style="display: none;">
                         <div class="row">
                             <div class="col-md-4 text-center">
-                                <img id="perfilFoto" src="" alt="Foto de perfil" class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
-                                <h4 id="perfilNombreCorto" class="text-primary"></h4>
-                                <p id="perfilCargo" class="text-muted"></p>
+                                <img id="perfilFotoPreview" src="" alt="Foto de perfil" class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+                                <div class="mb-3">
+                                    <label for="perfilFoto" class="form-label">Cambiar Foto</label>
+                                    <input class="form-control form-control-sm" type="file" id="perfilFoto" name="perfilFoto" accept="image/*">
+                                </div>
                             </div>
                             <div class="col-md-8">
                                 <h5>Datos Personales</h5>
-                                <table class="table table-sm table-borderless">
-                                    <tr>
-                                        <td class="fw-bold" style="width: 30%;">Nombre Completo:</td>
-                                        <td id="perfilNombreCompleto"></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="fw-bold">DNI:</td>
-                                        <td id="perfilDni"></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="fw-bold">Correo Personal:</td>
-                                        <td id="perfilCorreoPersonal"></td>
-                                    </tr>
-                                </table>
-                                <hr>
-                                <h5>Datos Corporativos</h5>
-                                <table class="table table-sm table-borderless">
-                                     <tr>
-                                        <td class="fw-bold" style="width: 30%;">Usuario:</td>
-                                        <td id="perfilUsername"></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="fw-bold">Correo Corporativo:</td>
-                                        <td id="perfilCorreoCorp"></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="fw-bold">Área:</td>
-                                        <td id="perfilArea"></td>
-                                    </tr>
-                                </table>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="perfilNombres" class="form-label">Nombres</label>
+                                        <input type="text" class="form-control" id="perfilNombres" name="nombres">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="perfilPaterno" class="form-label">Apellido Paterno</label>
+                                        <input type="text" class="form-control" id="perfilPaterno" name="paterno">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="perfilMaterno" class="form-label">Apellido Materno</label>
+                                        <input type="text" class="form-control" id="perfilMaterno" name="materno">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="perfilNombreCorto" class="form-label">Nombre Corto</label>
+                                        <input type="text" class="form-control" id="perfilNombreCorto" name="nombrecorto">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="perfilDni" class="form-label">DNI</label>
+                                        <input type="text" class="form-control" id="perfilDni" name="dni">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="perfilNacimiento" class="form-label">Fecha de Nacimiento</label>
+                                        <input type="date" class="form-control" id="perfilNacimiento" name="nacimiento">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="perfilLugarNacimiento" class="form-label">Lugar de Nacimiento</label>
+                                        <input type="text" class="form-control" id="perfilLugarNacimiento" name="lugarnacimiento">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="perfilEstadoCivil" class="form-label">Estado Civil</label>
+                                        <select class="form-select" id="perfilEstadoCivil" name="estadocivil">
+                                            <option value="">Seleccionar...</option>
+                                            <option value="Soltero">Soltero(a)</option>
+                                            <option value="Casado">Casado(a)</option>
+                                            <option value="Viudo">Viudo(a)</option>
+                                            <option value="Divorciado">Divorciado(a)</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="perfilDomicilio" class="form-label">Domicilio</label>
+                                        <input type="text" class="form-control" id="perfilDomicilio" name="domicilio">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="perfilCorreoPersonal" class="form-label">Correo Personal</label>
+                                        <input type="email" class="form-control" id="perfilCorreoPersonal" name="correopersonal">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="perfilTelCelular" class="form-label">Teléfono Celular</label>
+                                        <input type="text" class="form-control" id="perfilTelCelular" name="telcelular">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="perfilTelFijo" class="form-label">Teléfono Fijo</label>
+                                        <input type="text" class="form-control" id="perfilTelFijo" name="telfijo">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="perfilContactoEmergencia" class="form-label">Contacto de Emergencia</label>
+                                        <input type="text" class="form-control" id="perfilContactoEmergencia" name="contactoemergencia">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <hr>
+                        <h5>Cambiar Contraseña</h5>
+                        <p class="small text-muted">Dejar en blanco para no cambiar la contraseña.</p>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="perfilPasswordActual" class="form-label">Contraseña Actual</label>
+                                <input type="password" class="form-control" id="perfilPasswordActual" name="password_actual" autocomplete="new-password">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="perfilPasswordNuevo" class="form-label">Nueva Contraseña</label>
+                                <input type="password" class="form-control" id="perfilPasswordNuevo" name="password_nuevo" autocomplete="new-password">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="perfilPasswordConfirmar" class="form-label">Confirmar Nueva Contraseña</label>
+                                <input type="password" class="form-control" id="perfilPasswordConfirmar" name="password_confirmar" autocomplete="new-password">
+                            </div>
+                        </div>
+                        <div id="perfilError" class="alert alert-danger mt-3" style="display: none;"></div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" form="formPerfilUsuario" class="btn btn-primary" id="guardarPerfilBtn" style="display: none;">Guardar Cambios</button>
                 </div>
             </div>
         </div>
@@ -267,7 +318,7 @@ if (isset($_SESSION['idusuario'])) {
             </div>
             <?php unset($_SESSION['mensaje_exito']); ?>
         <?php endif; ?>
-        
+
         <?php if (isset($_SESSION['mensaje_error'])): ?>
             <div class="alert alert-danger alert-dismissible fade show mt-3">
                 <?php echo htmlspecialchars($_SESSION['mensaje_error']); ?>
@@ -277,3 +328,5 @@ if (isset($_SESSION['idusuario'])) {
         <?php endif; ?>
         <!-- El contenido de la página específica se cargará aquí -->
     </div>
+</body>
+</html>
