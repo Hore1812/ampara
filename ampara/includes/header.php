@@ -180,7 +180,7 @@ if (isset($_SESSION['idusuario'])) {
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownUser">
                                 <li><a class="dropdown-item" href="#" id="enlacePerfilUsuario">Perfil</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión</a></li>
+                                <li><a class="dropdown-item" href="#" id="enlaceCerrarSesion"><i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión</a></li>
                             </ul>
                         </li>
                     <?php else: ?>

@@ -568,4 +568,45 @@ $(document).ready(function() {
     tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl);
     });
+
+    // Lógica para el modal de confirmación de cierre de sesión
+    $('#enlaceCerrarSesion').on('click', function(e) {
+        e.preventDefault();
+
+        const modalCancelarElement = document.getElementById('modalCancelar');
+        if (modalCancelarElement) {
+            const modalTitle = modalCancelarElement.querySelector('.modal-title');
+            const modalBody = modalCancelarElement.querySelector('.modal-body');
+            const modalFooter = modalCancelarElement.querySelector('.modal-footer');
+
+            modalTitle.textContent = 'Confirmar Cierre de Sesión';
+            modalBody.textContent = '¿Está seguro de que desea cerrar la sesión?';
+
+            // Limpiar y configurar el footer
+            modalFooter.innerHTML = '';
+            const btnNo = document.createElement('button');
+            btnNo.type = 'button';
+            btnNo.className = 'btn btn-secondary';
+            btnNo.textContent = 'No';
+            btnNo.setAttribute('data-bs-dismiss', 'modal');
+
+            const btnSi = document.createElement('button');
+            btnSi.type = 'button';
+            btnSi.className = 'btn btn-danger';
+            btnSi.textContent = 'Sí, cerrar sesión';
+            btnSi.id = 'btnConfirmarLogout';
+
+            modalFooter.appendChild(btnNo);
+            modalFooter.appendChild(btnSi);
+
+            const modal = new bootstrap.Modal(modalCancelarElement);
+
+            // Añadir el listener al botón de confirmación
+            document.getElementById('btnConfirmarLogout').addEventListener('click', function() {
+                window.location.href = 'logout.php';
+            }, { once: true }); // Use 'once' to avoid multiple bindings
+
+            modal.show();
+        }
+    });
 });
