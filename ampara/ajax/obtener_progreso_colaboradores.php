@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 session_start();
-require_once '../conexion.php'; 
+require_once '../conexion.php';
 
 // Simulación de una función de seguridad/autenticación
 if (!isset($_SESSION['idusuario'])) {
@@ -17,22 +17,37 @@ try {
     $mes = filter_input(INPUT_POST, 'mes', FILTER_VALIDATE_INT);
     $idcolaborador = filter_input(INPUT_POST, 'idcolaborador', FILTER_VALIDATE_INT);
 
-    $sql = "SELECT * FROM vista_progreso_colaborador_vs_meta WHERE 1=1";
+    // Reemplazar la vista con una consulta directa y corregida
+    $sql = "
+        SELECT
+            e.idempleado,
+            e.nombrecorto AS NombreColaborador,
+            e.horasmeta AS HorasMeta,
+            YEAR(l.fecha) AS Anio,
+            MONTH(l.fecha) AS Mes,
+            SUM(dh.calculo) AS HorasCompletadas,
+            (SUM(dh.calculo) / e.horasmeta) * 100 AS PorcentajeCumplimiento
+        FROM distribucionhora dh
+        JOIN liquidacion l ON dh.idliquidacion = l.idliquidacion
+        JOIN empleado e ON dh.participante = e.idempleado
+        WHERE l.estado = 'Completo' AND l.activo = 1
+    ";
     $params = [];
 
     if ($anio) {
-        $sql .= " AND Anio = :anio";
+        $sql .= " AND YEAR(l.fecha) = :anio";
         $params[':anio'] = $anio;
     }
     if ($mes) {
-        $sql .= " AND Mes = :mes";
+        $sql .= " AND MONTH(l.fecha) = :mes";
         $params[':mes'] = $mes;
     }
     if ($idcolaborador) {
-        $sql .= " AND idempleado = :idcolaborador";
+        $sql .= " AND e.idempleado = :idcolaborador";
         $params[':idcolaborador'] = $idcolaborador;
     }
 
+    $sql .= " GROUP BY e.idempleado, e.nombrecorto, e.horasmeta, Anio, Mes";
     $sql .= " ORDER BY Anio DESC, Mes DESC, PorcentajeCumplimiento DESC";
 
     $stmt = $pdo->prepare($sql);
@@ -59,11 +74,11 @@ try {
             $meses[] = $row['Mes'];
         }
     }
-    
+
     sort($meses);
 
     echo json_encode([
-        'success' => true, 
+        'success' => true,
         'data' => array_values($pivotData),
         'meses' => $meses
     ]);

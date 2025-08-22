@@ -37,7 +37,7 @@ if (isset($_SESSION['idusuario'])) {
 
     if (isset($_SESSION['tipo_usuario'])) {
         $tipo_usuario_actual = $_SESSION['tipo_usuario'];
-       
+
     }
 }
 ?>
@@ -52,21 +52,21 @@ if (isset($_SESSION['idusuario'])) {
     <!-- <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon.png"/>
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon.png"/>
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon.png"/> -->
-   
+
     <title><?php echo isset($page_title) ? htmlspecialchars($page_title) : 'Intranet-AMPARA'; ?></title>
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+
     <!-- DataTables CSS (si se sigue usando globalmente) -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
-    
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/estilo.css">
-   
+
     <!-- <link rel="stylesheet" href="css/empleados.css"> -->
     <style>
         /* Estilos adicionales para el header si son necesarios */
@@ -126,7 +126,7 @@ if (isset($_SESSION['idusuario'])) {
                             <li><a class="dropdown-item" href="#">Por Cliente</a></li>
                         </ul>
                     </li>
-                   
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownNoticias" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Noticias
@@ -165,7 +165,7 @@ if (isset($_SESSION['idusuario'])) {
                             <li><a class="dropdown-item" href="planificaciones.php">Planificacion</a></li>
                         </ul>
                     </li>
-                    
+
                     <?php endif;?>
                 </ul>
 
@@ -180,7 +180,7 @@ if (isset($_SESSION['idusuario'])) {
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownUser">
                                 <li><a class="dropdown-item" href="#" id="enlacePerfilUsuario">Perfil</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión</a></li>
+                                <li><a class="dropdown-item" href="logout.php" id="logoutLink"><i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión</a></li>
                             </ul>
                         </li>
                     <?php else: ?>
@@ -192,7 +192,7 @@ if (isset($_SESSION['idusuario'])) {
             </div>
         </div>
     </nav>
-    
+
     <!-- Contenedor principal para empujar el contenido debajo del navbar fijo -->
 
     <!-- Modal Perfil de Usuario -->
@@ -267,7 +267,7 @@ if (isset($_SESSION['idusuario'])) {
             </div>
             <?php unset($_SESSION['mensaje_exito']); ?>
         <?php endif; ?>
-        
+
         <?php if (isset($_SESSION['mensaje_error'])): ?>
             <div class="alert alert-danger alert-dismissible fade show mt-3">
                 <?php echo htmlspecialchars($_SESSION['mensaje_error']); ?>

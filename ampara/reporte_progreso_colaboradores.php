@@ -14,7 +14,7 @@ $meses_espanol = [
     '5' => 'Mayo', '6' => 'Junio', '7' => 'Julio', '8' => 'Agosto',
     '9' => 'Septiembre', '10' => 'Octubre', '11' => 'Noviembre', '12' => 'Diciembre'
 ];
-$colaboradores = obtenerColaboradores(); 
+$colaboradores = obtenerColaboradores();
 
 ?>
 
@@ -150,7 +150,7 @@ $(document).ready(function() {
 
     Chart.register(ChartDataLabels);
 
-    function formatearNumero(numero, decimales = 1) {
+    function formatearNumero(numero, decimales = 2) {
         return parseFloat(numero || 0).toLocaleString('es-ES', {
             minimumFractionDigits: decimales,
             maximumFractionDigits: decimales
@@ -199,7 +199,7 @@ $(document).ready(function() {
                         align: 'center',
                         formatter: function(value, context) {
                             const horas = context.chart.config.data.originalData[context.dataIndex].HorasCompletadas;
-                            return `${formatearNumero(horas, 1)}h (${formatearNumero(value, 0)}%)`;
+                            return `${formatearNumero(horas, 2)}h (${formatearNumero(value, 0)}%)`;
                         },
                         color: function(context) {
                             const bgColor = context.dataset.backgroundColor[context.dataIndex];
@@ -230,7 +230,7 @@ $(document).ready(function() {
                     <td>${mesesNombres[item.Mes]}</td>
                     <td>${formatearNumero(item.HorasMeta, 0)}</td>
                     <td>${formatearNumero(item.HorasCompletadas)}</td>
-                    <td>${formatearNumero(item.PorcentajeCumplimiento, 1)}%</td>
+                    <td>${formatearNumero(item.PorcentajeCumplimiento, 2)}%</td>
                 </tr>
             `);
         });
@@ -281,7 +281,7 @@ $(document).ready(function() {
             tbody.append(bodyRow);
         });
     }
-    
+
     function generarReporte() {
         $('#spinnerCarga').show();
         $('#contenedorResultadosDetalle, #contenedorDobleEntrada, #noDatos, #errorReporte').hide();
@@ -312,7 +312,7 @@ $(document).ready(function() {
 
                     $('#contenedorResultadosDetalle').show();
                     $('#contenedorDobleEntrada').show();
-                    
+
                     renderizarGrafico(flatData);
                     renderizarTabla(flatData);
                     renderizarTablaDobleEntrada(response.data, response.meses);

@@ -16,6 +16,9 @@
             <br>
             <p>&copy; <?php echo date("Y"); ?> AMPARA - Todos los derechos reservados.</p>
         </div>
+
+    <?php require_once 'modales.php'; // Cargar todos los modales genéricos ?>
+
     <!-- jQuery (necesario para DataTables) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- DataTables JS y dependencias Bootstrap 5 (si se sigue usando) -->

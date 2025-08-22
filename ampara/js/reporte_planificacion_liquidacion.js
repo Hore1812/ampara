@@ -33,7 +33,7 @@ window.onload = function() {
                     $('#contenedorDobleEntrada').show();
                     $('#contenedorGraficoBarras').show();
                     $('#contenedorColaboradores').show();
-                    
+
                     renderizarSummaryCards(response.data.summary);
                     renderizarTablaDobleEntrada(response.data.contratos);
                     renderizarGraficoDobleEntrada(response.data.estados);
@@ -95,8 +95,8 @@ window.onload = function() {
                 const horas = parseFloat(contratos[contrato].estados[estado] || 0);
                 const porcentaje = (horas / parseFloat(contratos[contrato].horas_planificadas) * 100);
                 const color = getCellColor(porcentaje);
-                bodyRow += `<td style="background-color: ${color};">${horas}h <span style="color: rgba(0,0,0,0.5);">(${porcentaje.toFixed(2)}%)</span></td>`;
-              
+                bodyRow += `<td style="background-color: ${color};">${horas.toFixed(2)}h <span style="color: rgba(0,0,0,0.5);">(${porcentaje.toFixed(2)}%)</span></td>`;
+
                 if (!totales[estado]) {
                     totales[estado] = 0;
                 }
@@ -118,7 +118,7 @@ window.onload = function() {
             const totalHoras = totales[estado] || 0;
             const totalPorcentaje = (totalHoras / totalHorasPlanificadas * 100).toFixed(2);
             const color = chartColors[index % chartColors.length];
-            totalRow += `<td style="background-color: ${color}; color: white;"><strong>${totalHoras}h (${totalPorcentaje}%)</strong></td>`;
+            totalRow += `<td style="background-color: ${color}; color: white;"><strong>${totalHoras.toFixed(2)}h (${totalPorcentaje}%)</strong></td>`;
         });
         totalRow += '</tr>';
         tbody.append(totalRow);
@@ -281,7 +281,7 @@ window.onload = function() {
                         align: 'start',
                         formatter: (value, context) => {
                             let sum = 0;
-                            let dataArr = context.chart.data.datasets[0].data;
+                            let dataArr = ctx.chart.data.datasets[0].data;
                             dataArr.map(data => {
                                 sum += data;
                             });
