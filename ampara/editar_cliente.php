@@ -59,7 +59,7 @@ if (!$cliente_actual && $idcliente) {
                 <a href="clientes.php" class="btn btn-primary">Volver a la lista</a>
             <?php elseif ($cliente_actual): ?>
             <form id="formCliente" action="procesar_cliente.php" method="POST">
-                <input type="hidden" name="accion" value="actualizar">
+                <input type="hidden" name="accion" value="editar">
                 <input type="hidden" name="idcliente" value="<?php echo htmlspecialchars($cliente_actual['idcliente']); ?>">
 
                 <fieldset class="mb-3">
@@ -129,7 +129,7 @@ if (!$cliente_actual && $idcliente) {
                         <input type="email" class="form-control" id="correogerente" name="correogerente" maxlength="150" value="<?php echo htmlspecialchars($cliente_actual['correogerente'] ?? ''); ?>">
                     </div>
                 </fieldset>
-                
+
                 <div class="mb-3">
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="activo" name="activo" value="1" <?php echo (isset($cliente_actual['activo']) && $cliente_actual['activo'] == 1) ? 'checked' : ''; ?>>
@@ -150,9 +150,9 @@ if (!$cliente_actual && $idcliente) {
     </div>
 </div>
 
-<?php 
-require_once 'includes/modales.php'; 
-require_once 'includes/footer.php'; 
+<?php
+require_once 'includes/modales.php';
+require_once 'includes/footer.php';
 ?>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (modalTitle) modalTitle.textContent = 'Confirmar Cancelación';
             if (modalBody) modalBody.innerHTML = '¿Está seguro que desea cancelar la edición del cliente? Los cambios no guardados se perderán.';
-            
+
             if(modalFooter) {
                 modalFooter.innerHTML = `
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
             modalCancelarInstance.show();
         });
     }
-    
+
     const formCliente = document.getElementById('formCliente');
     const modalConfirmarGuardadoElement = document.getElementById('modalConfirmarGuardado');
     let modalConfirmarGuardadoInstance = null;
@@ -201,10 +201,10 @@ document.addEventListener('DOMContentLoaded', function() {
             event.preventDefault();
             const modalTitle = modalConfirmarGuardadoElement.querySelector('.modal-title');
             const modalBody = modalConfirmarGuardadoElement.querySelector('.modal-body');
-            
+
             if(modalTitle) modalTitle.textContent = 'Confirmar Actualización de Cliente';
             if(modalBody) modalBody.innerHTML = '¿Está seguro que desea guardar los cambios de este cliente?';
-            
+
             modalConfirmarGuardadoInstance.show();
         });
 
@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (modalConfirmarGuardadoInstance) {
                 modalConfirmarGuardadoInstance.hide();
             }
-            formCliente.submit(); 
+            formCliente.submit();
         });
     }
 });

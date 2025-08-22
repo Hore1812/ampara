@@ -738,15 +738,15 @@ function actualizarCliente($idcliente,$datos) {
  * @param int$editor_id ID del empleado que realiza la modificación.
  * @return bool True en éxito, false en error.
  */
-function actualizarEstadoCliente($idcliente,$estado,$editor_id) {
-    global$pdo;
-   $sql = "UPDATE cliente SET activo = :activo, editor = :editor, modificado = CURRENT_TIMESTAMP WHERE idcliente = :idcliente";
+function actualizarEstadoCliente($idcliente, $estado, $editor_id) {
+    global $pdo;
+    $sql = "UPDATE cliente SET activo = :activo, editor = :editor, modificado = CURRENT_TIMESTAMP WHERE idcliente = :idcliente";
     try {
-       $stmt =$pdo->prepare($sql);
-        return$stmt->execute([':activo' =>$estado, ':editor' =>$editor_id, ':idcliente' =>$idcliente]);
-    } catch (PDOException$e) {
-        error_log("Error al actualizar estado de cliente: " .$e->getMessage());
-       $_SESSION['mensaje_error_detalle'] = 'Error de base de datos: ' .$e->getMessage();
+        $stmt = $pdo->prepare($sql);
+        return $stmt->execute([':activo' => $estado, ':editor' => $editor_id, ':idcliente' => $idcliente]);
+    } catch (PDOException $e) {
+        error_log("Error al actualizar estado de cliente: " . $e->getMessage());
+        $_SESSION['mensaje_error_detalle'] = 'Error de base de datos: ' . $e->getMessage();
         return false;
     }
 }
